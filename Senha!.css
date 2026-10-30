@@ -367,6 +367,145 @@ footer {
     margin-bottom: 35px;
 }
 
+/* CRONÔMETRO */
+
+.tempo-info {
+    text-align: center;
+}
+
+.tempo-info h3 {
+    margin-top: 6px;
+    color: #9cce72;
+    font-size: 19px;
+}
+
+/* RANKING */
+
+.area-ranking {
+    margin-top: 30px;
+    padding: 20px;
+
+    background: #303546;
+    border: 1px solid #41475a;
+    border-radius: 12px;
+}
+
+.titulo-ranking {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.titulo-ranking h2 {
+    color: #9cce72;
+    font-size: 20px;
+    margin: 0;
+}
+
+.titulo-ranking span {
+    font-size: 12px;
+    color: #9298a9;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 13px;
+    margin-bottom: 9px;
+
+    background: #222532;
+    border-radius: 9px;
+}
+
+.ranking-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.ranking-posicao {
+    font-size: 18px;
+    font-weight: bold;
+    color: #9cce72;
+    min-width: 25px;
+}
+
+.ranking-nome {
+    font-size: 14px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.ranking-detalhes {
+    color: #9298a9;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.ranking-vitorias {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.ranking-vitorias strong {
+    display: block;
+    color: #9cce72;
+    font-size: 15px;
+}
+
+.ranking-vitorias span {
+    color: #9298a9;
+    font-size: 10px;
+}
+
+.ranking-vazio {
+    color: #9298a9;
+    text-align: center;
+    padding: 20px 5px;
+    font-size: 13px;
+}
+
+.ranking-primeiro {
+    border: 1px solid #9cce72;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 500px) {
+
+    .info-jogador {
+        gap: 8px;
+        padding: 13px 9px;
+    }
+
+    .info-jogador h3 {
+        font-size: 13px;
+    }
+
+    .texto-pequeno {
+        font-size: 9px;
+    }
+
+    .tempo-info h3 {
+        font-size: 15px;
+    }
+
+    .area-ranking {
+        padding: 14px;
+    }
+
+    .titulo-ranking {
+        flex-wrap: wrap;
+    }
+
+}
+
 @media (max-width: 500px) {
     .marca img {
         width: 55px;
