@@ -1,0 +1,34 @@
+CREATE DATABASE Senha;
+GO
+
+USE Senha;
+GO
+
+CREATE TABLE Jogadores (
+    IdJogador INT IDENTITY(1,1) PRIMARY KEY,
+    Nome VARCHAR(20) NOT NULL,
+    DataCadastro DATETIME DEFAULT GETDATE()
+);
+GO
+
+CREATE TABLE Partidas (
+    IdPartida INT IDENTITY(1,1) PRIMARY KEY,
+
+    IdJogador INT NOT NULL,
+
+    TempoSegundos INT NOT NULL,
+
+    Tentativas INT NOT NULL,
+
+    Venceu BIT NOT NULL,
+
+    DataPartida DATETIME DEFAULT GETDATE(),
+
+    FOREIGN KEY (IdJogador)
+        REFERENCES Jogadores(IdJogador),
+
+    CHECK (TempoSegundos >= 0),
+
+    CHECK (Tentativas BETWEEN 1 AND 6)
+);
+GO
