@@ -1,8 +1,10 @@
-﻿
-namespace GastroMatch.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Senha.Models
 {
     public class Partida
     {
+        [Key]
         public int IdPartida { get; set; }
 
         public int IdJogador { get; set; }
@@ -15,7 +17,8 @@ namespace GastroMatch.Models
 
         public DateTime DataPartida { get; set; } = DateTime.Now;
 
-        // Relacionamento com Jogador
-        public Jogador Jogador { get; set; }
+        
+        // Jogador pode ser nulo durante o recebimento da requisição
+        public Jogador? Jogador { get; set; }
     }
 }

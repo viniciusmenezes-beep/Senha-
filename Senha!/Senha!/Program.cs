@@ -4,37 +4,35 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
     options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
 });
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<SenhaContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<SenhaContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirTudo", policy =>
     {
         policy
-            .WithOrigins(
-                "http://127.0.0.1:5500",
-                "http://localhost:5500",
-                "http://localhost:5158"
-            )
+            .SetIsOriginAllowed(origin =>
+                origin.StartsWith("http://10.139.146."))
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowAnyMethod();
     });
 });
 
@@ -46,16 +44,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseCors("PermitirTudo");
-
+//app.UseHttpsRedirection();
 app.UseSession();
-
 app.UseStaticFiles();
-
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+app.Run("http://0.0.0.0:5032");
+
+
+
+
+
+
+

@@ -1,8 +1,14 @@
 
+// ============================================
+// CONFIGURAÇÕES
+// ============================================
+
+const API_URL = "http://10.139.146.57:5032";
+
 const MAX_TENTATIVAS = 6;
 const TAMANHO_SENHA = 5;
-const CHAVE_RANKING = "senhaSecretaRanking";
 
+let idJogador = null;
 let nomeJogador = "";
 let senhaSecreta = "";
 let tentativas = 0;
@@ -12,7 +18,9 @@ let intervaloCronometro = null;
 let tempoFinal = 0;
 
 
-// ELEMENTOS
+// ============================================
+// ELEMENTOS HTML
+// ============================================
 
 const telaLogin = document.getElementById("tela-login");
 const telaJogo = document.getElementById("tela-jogo");
@@ -22,68 +30,25 @@ const inputNome = document.getElementById("nome-player");
 const inputSenha = document.getElementById("input-senha");
 
 const historico = document.getElementById("historico");
-
 const contador = document.getElementById("contador");
 const mensagem = document.getElementById("mensagem");
 
 const cronometro = document.getElementById("cronometro");
+
 const areaRanking = document.getElementById("area-ranking");
 const btnRanking = document.getElementById("btn-ranking");
 const btnFecharRanking = document.getElementById("btn-fechar-ranking");
 
-// LOCALSTORAGE
-
-function obterRanking() {
-
-    try {
-
-        const dados = JSON.parse(
-            localStorage.getItem(CHAVE_RANKING)
-        );
-
-        return Array.isArray(dados) ? dados : [];
-
-    } catch {
-
-        return [];
-
-    }
-
-}
-
-// ABRIR RANKING
-btnRanking.addEventListener("click", () => {
-    atualizarRanking();
-
-    telaLogin.classList.add("escondido");
-    areaRanking.classList.remove("escondido");
-});
-
-// FECHAR RANKING
-btnFecharRanking.addEventListener("click", () => {
-    areaRanking.classList.add("escondido");
-    telaLogin.classList.remove("escondido");
-});
+const listaRanking = document.getElementById("lista-ranking");
 
 
-// SALVAR RANKING
-
-function salvarRanking(ranking) {
-
-    localStorage.setItem(
-        CHAVE_RANKING,
-        JSON.stringify(ranking)
-    );
-
-}
-
-
+// ============================================
 // FORMATAR TEMPO
+// ============================================
 
 function formatarTempo(segundos) {
 
     const minutos = Math.floor(segundos / 60);
-
     const segundosRestantes = segundos % 60;
 
     return (
@@ -91,28 +56,25 @@ function formatarTempo(segundos) {
         ":" +
         String(segundosRestantes).padStart(2, "0")
     );
-
 }
 
 
+// ============================================
 // CRONÔMETRO
+// ============================================
 
 function iniciarCronometro() {
 
     clearInterval(intervaloCronometro);
 
     tempoInicio = Date.now();
-
     tempoFinal = 0;
 
     atualizarCronometro();
 
     intervaloCronometro = setInterval(() => {
-
         atualizarCronometro();
-
     }, 1000);
-
 }
 
 
@@ -123,7 +85,6 @@ function atualizarCronometro() {
     );
 
     cronometro.textContent = formatarTempo(tempoAtual);
-
 }
 
 
@@ -138,11 +99,12 @@ function pararCronometro() {
     );
 
     cronometro.textContent = formatarTempo(tempoFinal);
-
 }
 
 
+// ============================================
 // TROCAR TELAS
+// ============================================
 
 function mostrarTela(tela) {
 
@@ -151,23 +113,14 @@ function mostrarTela(tela) {
     telaResultado.classList.add("escondido");
 
     tela.classList.remove("escondido");
-
 }
 
 
-// LOGIN
+// ============================================
+// LOGIN E CADASTRO DO JOGADOR
+// ============================================
 
-document.getElementById("btn-entrar")
-    .addEventListener("click", entrarNoJogo);
-
-inputNome.addEventListener("keydown", (e) => {
-
-    if (e.key === "Enter") entrarNoJogo();
-
-});
-
-
-function entrarNoJogo() {
+async function entrarNoJogo() {
 
     nomeJogador = inputNome.value.trim();
 
@@ -178,18 +131,114 @@ function entrarNoJogo() {
         inputNome.focus();
 
         return;
-
     }
 
-    document.getElementById("nome-exibido").textContent =
-        nomeJogador;
+    if (nomeJogador.length > 20) {
 
-    iniciarPartida();
+        alert("O nome deve ter no máximo 20 caracteres.");
 
+        inputNome.focus();
+
+        return;
+    }
+
+    const btnEntrar = document.getElementById("btn-entrar");
+
+    btnEntrar.disabled = true;
+
+    try {
+
+        // Busca os jogadores cadastrados
+        const resposta = await fetch(`${API_URL}/Jogador`);
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível buscar os jogadores.");
+        }
+
+        const jogadores = await resposta.json();
+
+        // Verifica se o jogador já existe
+        const jogador = jogadores.find(j =>
+            (j.nome ?? "").trim().toLowerCase() ===
+            nomeJogador.toLowerCase()
+        );
+
+        // Se não existir, cadastra
+        if (!jogador) {
+
+            const cadastro = await fetch(
+                `${API_URL}/Jogador/cadastrar`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        nome: nomeJogador
+                    })
+                }
+            );
+
+           if (!cadastro.ok) {
+
+    const erro = await cadastro.text();
+
+    console.error("Erro detalhado do cadastro:", erro);
+
+    alert("Erro ao cadastrar jogador: " + erro);
+
+    return;
+}
+
+            const resultado = await cadastro.json();
+
+            idJogador = resultado.idJogador;
+
+        } else {
+
+            idJogador = jogador.idJogador;
+        }
+
+        document.getElementById("nome-exibido").textContent =
+            nomeJogador;
+
+        iniciarPartida();
+
+    } catch (erro) {
+
+        console.error("Erro ao entrar:", erro);
+
+        alert(
+            "Não foi possível conectar com o servidor. " +
+            "Verifique se a API está funcionando."
+        );
+
+    } finally {
+
+        btnEntrar.disabled = false;
+    }
 }
 
 
-// GERAR SENHA
+// Botão de entrar
+document.getElementById("btn-entrar")
+    .addEventListener("click", entrarNoJogo);
+
+
+// Permite entrar pressionando Enter
+inputNome.addEventListener("keydown", (e) => {
+
+    if (e.key === "Enter") {
+        entrarNoJogo();
+    }
+});
+
+
+// ============================================
+// GERAR SENHA ALEATÓRIA
+// ============================================
 
 function gerarSenha() {
 
@@ -198,15 +247,15 @@ function gerarSenha() {
     for (let i = 0; i < TAMANHO_SENHA; i++) {
 
         senha += Math.floor(Math.random() * 10);
-
     }
 
     return senha;
-
 }
 
 
+// ============================================
 // INICIAR PARTIDA
+// ============================================
 
 function iniciarPartida() {
 
@@ -229,11 +278,12 @@ function iniciarPartida() {
     iniciarCronometro();
 
     inputSenha.focus();
-
 }
 
 
+// ============================================
 // COMPARAR SENHA
+// ============================================
 
 function compararSenha(palpite) {
 
@@ -241,7 +291,7 @@ function compararSenha(palpite) {
 
     const restante = {};
 
-    // POSIÇÕES CORRETAS
+    // PRIMEIRO: VERIFICAR POSIÇÕES CORRETAS
 
     for (let i = 0; i < TAMANHO_SENHA; i++) {
 
@@ -253,16 +303,16 @@ function compararSenha(palpite) {
 
             restante[senhaSecreta[i]] =
                 (restante[senhaSecreta[i]] || 0) + 1;
-
         }
-
     }
 
-    // NÚMEROS NA POSIÇÃO ERRADA
+    // SEGUNDO: VERIFICAR NÚMEROS NA POSIÇÃO ERRADA
 
     for (let i = 0; i < TAMANHO_SENHA; i++) {
 
-        if (resultado[i] === "verde") continue;
+        if (resultado[i] === "verde") {
+            continue;
+        }
 
         const numero = palpite[i];
 
@@ -271,29 +321,26 @@ function compararSenha(palpite) {
             resultado[i] = "amarelo";
 
             restante[numero]--;
-
         }
-
     }
 
     return resultado;
-
 }
 
 
+// ============================================
 // ENVIAR TENTATIVA
+// ============================================
 
 document.getElementById("btn-enviar")
     .addEventListener("click", enviarTentativa);
 
+
 inputSenha.addEventListener("keydown", (e) => {
 
     if (e.key === "Enter") {
-
         enviarTentativa();
-
     }
-
 });
 
 
@@ -301,13 +348,15 @@ function enviarTentativa() {
 
     const palpite = inputSenha.value.trim();
 
+    // Verifica se foram digitados exatamente 5 números
     if (!/^\d{5}$/.test(palpite)) {
 
         mensagem.textContent =
             "Digite exatamente 5 números!";
 
-        return;
+        inputSenha.focus();
 
+        return;
     }
 
     tentativas++;
@@ -322,34 +371,31 @@ function enviarTentativa() {
     inputSenha.value = "";
 
     // VITÓRIA
-
     if (palpite === senhaSecreta) {
 
         finalizarJogo(true);
 
         return;
-
     }
 
     // DERROTA
-
     if (tentativas >= MAX_TENTATIVAS) {
 
         finalizarJogo(false);
 
         return;
-
     }
 
     mensagem.textContent =
         "Senha incorreta! Tente novamente.";
 
     inputSenha.focus();
-
 }
 
 
-// MOSTRAR TENTATIVA
+// ============================================
+// MOSTRAR TENTATIVA NA TELA
+// ============================================
 
 function mostrarTentativa(palpite, cores) {
 
@@ -366,227 +412,218 @@ function mostrarTentativa(palpite, cores) {
         celula.textContent = palpite[i];
 
         linha.appendChild(celula);
-
     }
 
     historico.appendChild(linha);
-
 }
 
 
-// SALVAR RESULTADO DO JOGADOR
+// ============================================
+// SALVAR RESULTADO NO BANCO DE DADOS
+// ============================================
 
-function registrarResultado(venceu) {
+async function registrarResultado(venceu) {
 
-    const ranking = obterRanking();
+    if (!idJogador) {
 
-    // Procurar jogador pelo nome, ignorando maiúsculas
-    // e espaços extras.
-
-    let jogador = ranking.find(j =>
-        j.nome.trim().toLowerCase() ===
-        nomeJogador.trim().toLowerCase()
-    );
-
-    // Criar jogador caso ainda não exista.
-
-    if (!jogador) {
-
-        jogador = {
-
-            nome: nomeJogador,
-
-            partidas: 0,
-
-            vitorias: 0,
-
-            derrotas: 0,
-
-            melhorTempo: null,
-
-            melhorTentativas: null,
-
-            ultimoTempo: 0
-
-        };
-
-        ranking.push(jogador);
-
-    }
-
-    jogador.partidas++;
-
-    jogador.ultimoTempo = tempoFinal;
-
-    if (venceu) {
-
-        jogador.vitorias++;
-
-        // Melhor tempo
-
-        if (
-            jogador.melhorTempo === null ||
-            tempoFinal < jogador.melhorTempo
-        ) {
-
-            jogador.melhorTempo = tempoFinal;
-
-        }
-
-        // Menor quantidade de tentativas
-
-        if (
-            jogador.melhorTentativas === null ||
-            tentativas < jogador.melhorTentativas
-        ) {
-
-            jogador.melhorTentativas = tentativas;
-
-        }
-
-    } else {
-
-        jogador.derrotas++;
-
-    }
-
-    salvarRanking(ranking);
-
-    atualizarRanking();
-
-}
-
-
-// ORGANIZAR E MOSTRAR RANKING
-
-function atualizarRanking() {
-
-    const lista = document.getElementById("lista-ranking");
-
-    const ranking = obterRanking();
-
-    // Primeiro: vitórias
-    // Segundo: melhor tempo
-    // Terceiro: menor número de tentativas
-
-    ranking.sort((a, b) => {
-
-        if (b.vitorias !== a.vitorias) {
-
-            return b.vitorias - a.vitorias;
-
-        }
-
-        const tempoA = a.melhorTempo ?? Infinity;
-        const tempoB = b.melhorTempo ?? Infinity;
-
-        if (tempoA !== tempoB) {
-
-            return tempoA - tempoB;
-
-        }
-
-        const tentativasA = a.melhorTentativas ?? Infinity;
-        const tentativasB = b.melhorTentativas ?? Infinity;
-
-        return tentativasA - tentativasB;
-
-    });
-
-    salvarRanking(ranking);
-
-    lista.innerHTML = "";
-
-    if (ranking.length === 0) {
-
-        lista.innerHTML = `
-            <p class="ranking-vazio">
-                Nenhum jogador registrado ainda.
-                Seja o primeiro a jogar!
-            </p>
-        `;
+        console.error("Jogador não identificado.");
 
         return;
-
     }
 
-    ranking.forEach((jogador, indice) => {
+    try {
 
-        const item = document.createElement("div");
+        const resposta = await fetch(
+            `${API_URL}/Jogador/${idJogador}/partidas`,
+            {
+                method: "POST",
 
-        item.className = "ranking-item";
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-        if (indice === 0) {
+                body: JSON.stringify({
 
-            item.classList.add("ranking-primeiro");
+                    tempoSegundos: tempoFinal,
 
+                    tentativas: tentativas,
+
+                    venceu: venceu
+
+                })
+            }
+        );
+
+        if (!resposta.ok) {
+
+            throw new Error("Não foi possível salvar a partida.");
         }
 
-        const posicao = indice + 1;
+        console.log("Partida salva com sucesso!");
 
-        const tempo = jogador.melhorTempo !== null
-            ? formatarTempo(jogador.melhorTempo)
-            : "--:--";
+        // Atualiza o ranking após salvar
+        await atualizarRanking();
 
-        const tentativasMelhores =
-            jogador.melhorTentativas !== null
-                ? jogador.melhorTentativas + "/6"
+    } catch (erro) {
+
+        console.error("Erro ao salvar partida:", erro);
+
+        alert(
+            "Não foi possível salvar sua partida no banco de dados."
+        );
+    }
+}
+
+
+// ============================================
+// CARREGAR RANKING DA API
+// ============================================
+
+async function atualizarRanking() {
+
+    listaRanking.innerHTML = `
+        <p class="ranking-vazio">
+            Carregando ranking...
+        </p>
+    `;
+
+    try {
+
+        const resposta = await fetch(
+            `${API_URL}/Jogador/ranking`
+        );
+
+        if (!resposta.ok) {
+
+            throw new Error("Erro ao carregar ranking.");
+        }
+
+        const ranking = await resposta.json();
+
+        listaRanking.innerHTML = "";
+
+        if (ranking.length === 0) {
+
+            listaRanking.innerHTML = `
+                <p class="ranking-vazio">
+                    Nenhum jogador registrado ainda.
+                    Seja o primeiro a jogar!
+                </p>
+            `;
+
+            return;
+        }
+
+        ranking.forEach((jogador, indice) => {
+
+            const item = document.createElement("div");
+
+            item.className = "ranking-item";
+
+            if (indice === 0) {
+                item.classList.add("ranking-primeiro");
+            }
+
+            const melhorPartida = jogador.melhorPartida;
+
+            const tempo = melhorPartida
+                ? formatarTempo(melhorPartida.tempoSegundos)
+                : "--:--";
+
+            const melhoresTentativas = melhorPartida
+                ? `${melhorPartida.tentativas}/6`
                 : "--";
 
-        item.innerHTML = `
-            <div class="ranking-esquerda">
+            item.innerHTML = `
+                <div class="ranking-esquerda">
 
-                <span class="ranking-posicao">
-                    ${posicao}º
-                </span>
+                    <span class="ranking-posicao">
+                        ${indice + 1}º
+                    </span>
 
-                <div>
+                    <div>
 
-                    <div class="ranking-nome"></div>
+                        <div class="ranking-nome"></div>
 
-                    <div class="ranking-detalhes">
-                        ${jogador.partidas} partidas
-                        • ${jogador.derrotas} derrotas
-                    </div>
+                        <div class="ranking-detalhes">
+                            ${jogador.totalPartidas} partidas
+                            • ${jogador.derrotas} derrotas
+                        </div>
 
-                    <div class="ranking-detalhes">
-                        Melhor tempo: ${tempo}
-                        • ${tentativasMelhores} tentativas
+                        <div class="ranking-detalhes">
+                            Melhor tempo: ${tempo}
+                            • ${melhoresTentativas} tentativas
+                        </div>
+
                     </div>
 
                 </div>
 
-            </div>
+                <div class="ranking-vitorias">
 
-            <div class="ranking-vitorias">
+                    <strong>${jogador.vitorias}</strong>
 
-                <strong>${jogador.vitorias}</strong>
+                    <span>VITÓRIAS</span>
 
-                <span>VITÓRIAS</span>
+                </div>
+            `;
 
-            </div>
+            // Insere o nome como texto
+            item.querySelector(".ranking-nome").textContent =
+                jogador.nome;
+
+            listaRanking.appendChild(item);
+        });
+
+    } catch (erro) {
+
+        console.error("Erro ao carregar ranking:", erro);
+
+        listaRanking.innerHTML = `
+            <p class="ranking-vazio">
+                Não foi possível carregar o ranking.
+            </p>
         `;
-
-        // Inserir nome como texto para evitar interpretar
-        // caracteres digitados como HTML.
-
-        item.querySelector(".ranking-nome").textContent =
-            jogador.nome;
-
-        lista.appendChild(item);
-
-    });
-
+    }
 }
 
 
-// FINALIZAR JOGO
+// ============================================
+// ABRIR RANKING
+// ============================================
 
-function finalizarJogo(venceu) {
+btnRanking.addEventListener("click", async () => {
+
+    telaLogin.classList.add("escondido");
+
+    areaRanking.classList.remove("escondido");
+
+    await atualizarRanking();
+});
+
+
+// ============================================
+// FECHAR RANKING
+// ============================================
+
+btnFecharRanking.addEventListener("click", () => {
+
+    areaRanking.classList.add("escondido");
+
+    telaLogin.classList.remove("escondido");
+});
+
+
+// ============================================
+// FINALIZAR JOGO
+// ============================================
+
+async function finalizarJogo(venceu) {
 
     pararCronometro();
 
-    registrarResultado(venceu);
+    // Salva a partida no banco antes de mostrar o resultado
+    await registrarResultado(venceu);
 
     mostrarTela(telaResultado);
 
@@ -615,26 +652,27 @@ function finalizarJogo(venceu) {
         document.getElementById("texto-resultado")
             .textContent =
             `Suas tentativas acabaram. Você levou ${formatarTempo(tempoFinal)}. Tente novamente!`;
-
     }
 
     document.getElementById("senha-final")
         .textContent = senhaSecreta;
-
 }
 
 
-// REINICIAR
+// ============================================
+// REINICIAR PARTIDA
+// ============================================
 
 document.getElementById("btn-reiniciar")
     .addEventListener("click", () => {
 
         iniciarPartida();
-
     });
 
 
+// ============================================
 // TROCAR JOGADOR
+// ============================================
 
 document.getElementById("btn-voltar")
     .addEventListener("click", () => {
@@ -643,14 +681,17 @@ document.getElementById("btn-voltar")
 
         nomeJogador = "";
 
+        idJogador = null;
+
         areaRanking.classList.remove("escondido");
 
         mostrarTela(telaLogin);
-
     });
 
 
+// ============================================
 // SAIR DO JOGO
+// ============================================
 
 document.getElementById("btn-sair")
     .addEventListener("click", () => {
@@ -665,15 +706,17 @@ document.getElementById("btn-sair")
 
             nomeJogador = "";
 
+            idJogador = null;
+
             areaRanking.classList.remove("escondido");
 
             mostrarTela(telaLogin);
-
         }
-
     });
 
 
+// ============================================
 // CARREGAR RANKING AO ABRIR O JOGO
+// ============================================
 
 atualizarRanking();

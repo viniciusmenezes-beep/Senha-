@@ -1,12 +1,155 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\models\\partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\models\\partida.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\models\\jogador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\models\\jogador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\controllers\\jogadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\controllers\\jogadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\data\\senhacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\data\\senhacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|c:\\users\\manha.ceticc\\documents\\github\\senha-\\senha!\\senha!\\senha.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\senha.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Senha!\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Senha!\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-03T13:02:42.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Program.cs",
+              "RelativeDocumentMoniker": "Senha!\\Program.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Program.cs",
+              "RelativeToolTip": "Senha!\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T11:24:40.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\appsettings.json",
+              "RelativeDocumentMoniker": "Senha!\\appsettings.json",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\appsettings.json",
+              "RelativeToolTip": "Senha!\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-03T11:55:17.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SenhaContext.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Data\\SenhaContext.cs",
+              "RelativeDocumentMoniker": "Senha!\\Data\\SenhaContext.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Data\\SenhaContext.cs",
+              "RelativeToolTip": "Senha!\\Data\\SenhaContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T12:27:27.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Partida.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Models\\Partida.cs",
+              "RelativeDocumentMoniker": "Senha!\\Models\\Partida.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Models\\Partida.cs*",
+              "RelativeToolTip": "Senha!\\Models\\Partida.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T11:54:15.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Jogador.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Models\\Jogador.cs",
+              "RelativeDocumentMoniker": "Senha!\\Models\\Jogador.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Models\\Jogador.cs",
+              "RelativeToolTip": "Senha!\\Models\\Jogador.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T11:51:31.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JogadorController.cs",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Controllers\\JogadorController.cs",
+              "RelativeDocumentMoniker": "Senha!\\Controllers\\JogadorController.cs",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Controllers\\JogadorController.cs",
+              "RelativeToolTip": "Senha!\\Controllers\\JogadorController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T12:51:53.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Senha.csproj",
+              "DocumentMoniker": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Senha.csproj",
+              "RelativeDocumentMoniker": "Senha!\\Senha.csproj",
+              "ToolTip": "C:\\Users\\manha.ceticc\\Documents\\GitHub\\Senha-\\Senha!\\Senha!\\Senha.csproj",
+              "RelativeToolTip": "Senha!\\Senha.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-11-03T12:00:47.328Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

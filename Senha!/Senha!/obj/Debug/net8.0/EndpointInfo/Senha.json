@@ -1,0 +1,215 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Senha",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Jogador/cadastrar": {
+      "post": {
+        "tags": [
+          "Jogador"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jogador"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jogador"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jogador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Jogador/{id}": {
+      "get": {
+        "tags": [
+          "Jogador"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Jogador": {
+      "get": {
+        "tags": [
+          "Jogador"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Jogador/{idJogador}/partidas": {
+      "post": {
+        "tags": [
+          "Jogador"
+        ],
+        "parameters": [
+          {
+            "name": "idJogador",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partida"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partida"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partida"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Jogador"
+        ],
+        "parameters": [
+          {
+            "name": "idJogador",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Jogador/ranking": {
+      "get": {
+        "tags": [
+          "Jogador"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Jogador": {
+        "required": [
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "idJogador": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dataCadastro": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "partidas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Partida"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Partida": {
+        "type": "object",
+        "properties": {
+          "idPartida": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idJogador": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tempoSegundos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tentativas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "venceu": {
+            "type": "boolean"
+          },
+          "dataPartida": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jogador": {
+            "$ref": "#/components/schemas/Jogador"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
