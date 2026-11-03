@@ -28,7 +28,8 @@ const mensagem = document.getElementById("mensagem");
 
 const cronometro = document.getElementById("cronometro");
 const areaRanking = document.getElementById("area-ranking");
-
+const btnRanking = document.getElementById("btn-ranking");
+const btnFecharRanking = document.getElementById("btn-fechar-ranking");
 
 // LOCALSTORAGE
 
@@ -49,6 +50,20 @@ function obterRanking() {
     }
 
 }
+
+// ABRIR RANKING
+btnRanking.addEventListener("click", () => {
+    atualizarRanking();
+
+    telaLogin.classList.add("escondido");
+    areaRanking.classList.remove("escondido");
+});
+
+// FECHAR RANKING
+btnFecharRanking.addEventListener("click", () => {
+    areaRanking.classList.add("escondido");
+    telaLogin.classList.remove("escondido");
+});
 
 
 // SALVAR RANKING

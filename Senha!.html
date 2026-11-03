@@ -5,10 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Senha!</title>
-    <link rel="icon" href="img/Logótipo de chave minimalista colorido.png" type="image/png">
 
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>Senha!</title>
+
+    <link rel="icon" href="img/Logótipo de chave minimalista colorido.png" type="image/png">
     <link rel="stylesheet" href="Senha!.css">
 </head>
 
@@ -16,20 +18,16 @@
 
     <main class="container">
 
-       <header class="cabecalho">
+        <header class="cabecalho">
+            <div class="marca">
+                <img src="img/Logótipo de chave minimalista colorido.png" alt="Logo Senha Secreta">
+                <h1>SENHA!</h1>
+            </div>
 
-    <div class="marca">
-        <img src="img/Logótipo de chave minimalista colorido.png" alt="Logo Senha Secreta">
-
-        <h1>SENHA!</h1>
-    </div>
-
-    <p>Descubra o código antes que suas tentativas acabem!</p>
-
-</header>
+            <p>Descubra o código antes que suas tentativas acabem!</p>
+        </header>
 
         <!-- LOGIN -->
-
         <section id="tela-login" class="tela">
 
             <div class="icone-login"></div>
@@ -51,14 +49,14 @@
                 COMEÇAR A JOGAR
             </button>
 
-            <button id="btn-ranking">🏆 </button>
+            <button id="btn-ranking" class="btn-secundario">
+                🏆 VER RANKING
+            </button>
 
-        </section>
         </section>
 
         <!-- RANKING -->
-
-        <section id="area-ranking" class="area-ranking">
+        <section id="area-ranking" class="area-ranking escondido">
 
             <div class="titulo-ranking">
                 <h2>🏆 Ranking</h2>
@@ -67,14 +65,13 @@
 
             <div id="lista-ranking"></div>
 
+            <button id="btn-fechar-ranking" class="btn-secundario">
+                VOLTAR
+            </button>
+
         </section>
 
         <!-- JOGO -->
-
-        <section id="tela-jogo" class="tela escondido">
-
-        <!-- JOGO -->
-
         <section id="tela-jogo" class="tela escondido">
 
             <div class="info-jogador">
@@ -89,12 +86,10 @@
                     <h3 id="contador">0 / 6</h3>
                 </div>
 
-              
-
                 <div class="tempo-info">
-    <span class="texto-pequeno">TEMPO</span>
-    <h3 id="cronometro">00:00</h3>
-</div>
+                    <span class="texto-pequeno">TEMPO</span>
+                    <h3 id="cronometro">00:00</h3>
+                </div>
 
             </div>
 
@@ -103,11 +98,7 @@
                 <p>O código possui 5 números.</p>
             </div>
 
-            <!-- HISTÓRICO -->
-
             <div id="historico" class="historico"></div>
-
-            <!-- LEGENDA -->
 
             <div class="legenda">
 
@@ -127,8 +118,6 @@
                 </div>
 
             </div>
-
-            <!-- INPUT -->
 
             <div class="area-tentativa">
 
@@ -155,14 +144,10 @@
 
         </section>
 
-
         <!-- RESULTADO -->
-
         <section id="tela-resultado" class="tela escondido">
 
-            <div class="icone-resultado" id="icone-resultado">
-                
-            </div>
+            <div class="icone-resultado" id="icone-resultado"></div>
 
             <h2 id="titulo-resultado"></h2>
 
