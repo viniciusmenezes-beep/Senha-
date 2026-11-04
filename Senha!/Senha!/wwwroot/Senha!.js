@@ -18,6 +18,31 @@ let intervaloCronometro = null;
 let tempoFinal = 0;
 
 
+
+
+function alerta(titulo, mensagem, tipo = "warning") {
+    return Swal.fire({
+        title: titulo,
+        text: mensagem,
+        icon: tipo,
+
+        background: "#222532",
+        color: "#ffffff",
+
+        customClass: {
+            popup: "swal-senha-popup",
+            title: "swal-senha-title",
+            htmlContainer: "swal-senha-text",
+            confirmButton: "swal-senha-confirmar",
+            cancelButton: "swal-senha-cancelar"
+        },
+
+        buttonsStyling: false,
+        confirmButtonText: "ENTENDI",
+
+        allowOutsideClick: false
+    });
+}
 // ============================================
 // ELEMENTOS HTML
 // ============================================
@@ -42,6 +67,86 @@ const btnFecharRanking = document.getElementById("btn-fechar-ranking");
 const listaRanking = document.getElementById("lista-ranking");
 
 
+
+// =================================
+// MODAL PERSONALIZADO
+// =================================
+
+const modalAlerta = document.getElementById("modal-alerta");
+const modalIcone = document.getElementById("modal-icone");
+const modalTitulo = document.getElementById("modal-titulo");
+const modalMensagem = document.getElementById("modal-mensagem");
+
+const modalConfirmar = document.getElementById("modal-confirmar");
+const modalCancelar = document.getElementById("modal-cancelar");
+
+let resolverModal = null;
+
+
+function abrirModal(titulo, mensagem, tipo = "erro", confirmacao = false) {
+
+    return new Promise((resolve) => {
+
+        resolverModal = resolve;
+
+        const icones = {
+            erro: "!",
+            sucesso: "✓",
+            aviso: "!",
+            confirmacao: "?"
+        };
+
+        modalTitulo.textContent = titulo;
+        modalMensagem.textContent = mensagem;
+
+        modalIcone.textContent = icones[tipo] || "!";
+
+        modalIcone.className = `modal-icone ${tipo}`;
+
+        modalCancelar.classList.toggle("escondido", !confirmacao);
+
+        modalConfirmar.textContent = confirmacao
+            ? "SIM, SAIR"
+            : "ENTENDI";
+
+        modalAlerta.classList.remove("escondido");
+    });
+}
+
+
+function fecharModal(resultado) {
+
+    modalAlerta.classList.add("escondido");
+
+    if (resolverModal) {
+        resolverModal(resultado);
+        resolverModal = null;
+    }
+}
+
+
+// Mostrar aviso simples
+function mostrarAlerta(mensagem, tipo = "erro", titulo = "Atenção!") {
+
+    return abrirModal(titulo, mensagem, tipo, false);
+}
+
+
+// Mostrar confirmação com SIM e CANCELAR
+function mostrarConfirmacao(mensagem, titulo = "Tem certeza?") {
+
+    return abrirModal(titulo, mensagem, "confirmacao", true);
+}
+
+
+// Botões do modal
+modalConfirmar.addEventListener("click", () => {
+    fecharModal(true);
+});
+
+modalCancelar.addEventListener("click", () => {
+    fecharModal(false);
+});
 // ============================================
 // FORMATAR TEMPO
 // ============================================
@@ -124,18 +229,24 @@ async function entrarNoJogo() {
 
     nomeJogador = inputNome.value.trim();
 
-    if (!nomeJogador) {
-
-        alert("Digite seu nome para continuar!");
+    if (nomeJogador.length > 20) {
+        alerta(
+            "Nome muito grande!",
+            "O nome deve ter no máximo 20 caracteres.",
+            "warning"
+        );
 
         inputNome.focus();
-
         return;
     }
 
     if (nomeJogador.length > 20) {
 
-        alert("O nome deve ter no máximo 20 caracteres.");
+        alerta(
+            "Muito bem!",
+            "Sua partida foi salva com sucesso!",
+            "success"
+        );
 
         inputNome.focus();
 
@@ -187,9 +298,14 @@ async function entrarNoJogo() {
 
     console.error("Erro detalhado do cadastro:", erro);
 
-    alert("Erro ao cadastrar jogador: " + erro);
+               alerta(
+                   "Digite seu nome para continuar.",
+                   
+               );
 
-    return;
+               return;
+
+              
 }
 
             const resultado = await cadastro.json();
@@ -210,9 +326,11 @@ async function entrarNoJogo() {
 
         console.error("Erro ao entrar:", erro);
 
-        alert(
-            "Não foi possível conectar com o servidor. " +
-            "Verifique se a API está funcionando."
+        alerta(
+          
+            "Ops!",
+            "Não foi possível conectar com o servidor.",
+            "error"
         );
 
     } finally {
@@ -426,7 +544,11 @@ async function registrarResultado(venceu) {
 
     if (!idJogador) {
 
-        console.error("Jogador não identificado.");
+        alerta(
+            "Erro ao salvar!",
+            "Não foi possível salvar sua partida no banco de dados.",
+            "error"
+        );
 
         return;
     }
@@ -468,8 +590,10 @@ async function registrarResultado(venceu) {
 
         console.error("Erro ao salvar partida:", erro);
 
-        alert(
-            "Não foi possível salvar sua partida no banco de dados."
+        mostrarAlerta(
+            "Não foi possível salvar sua partida no banco de dados.",
+            "erro",
+            "Erro ao salvar"
         );
     }
 }
@@ -693,27 +817,54 @@ document.getElementById("btn-voltar")
 // SAIR DO JOGO
 // ============================================
 
-document.getElementById("btn-sair")
-    .addEventListener("click", () => {
+// ============================================
+// SAIR DO JOGO
+// ============================================
 
-        if (confirm("Deseja realmente sair da partida?")) {
+async function confirmarSaida() {
 
-            clearInterval(intervaloCronometro);
+    const resultado = await Swal.fire({
+        title: "Sair da partida?",
+        text: "Seu progresso nesta partida será perdido.",
+        icon: "question",
 
-            intervaloCronometro = null;
+        background: "#222532",
+        color: "#ffffff",
 
-            inputNome.value = "";
+        showCancelButton: true,
 
-            nomeJogador = "";
+        confirmButtonText: "SIM, SAIR",
+        cancelButtonText: "CONTINUAR JOGANDO",
 
-            idJogador = null;
+        customClass: {
+            popup: "swal-senha-popup",
+            title: "swal-senha-title",
+            htmlContainer: "swal-senha-text",
+            confirmButton: "swal-senha-confirmar",
+            cancelButton: "swal-senha-cancelar"
+        },
 
-            areaRanking.classList.remove("escondido");
-
-            mostrarTela(telaLogin);
-        }
+        buttonsStyling: false,
+        reverseButtons: true,
+        allowOutsideClick: false
     });
 
+    if (resultado.isConfirmed) {
+
+        clearInterval(intervaloCronometro);
+        intervaloCronometro = null;
+
+        inputNome.value = "";
+        nomeJogador = "";
+        idJogador = null;
+
+        areaRanking.classList.remove("escondido");
+        mostrarTela(telaLogin);
+    }
+}
+
+document.getElementById("btn-sair")
+    .addEventListener("click", confirmarSaida);
 
 // ============================================
 // CARREGAR RANKING AO ABRIR O JOGO

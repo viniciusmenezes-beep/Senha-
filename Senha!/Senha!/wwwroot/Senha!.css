@@ -20,6 +20,42 @@ body {
     padding: 20px;
 }
 
+
+/* SWEETALERT - SENHA! */
+
+.swal-senha-popup {
+    background: #222532 !important;
+    border: 1px solid #41475a !important;
+    border-radius: 20px !important;
+}
+
+.swal2-icon.swal2-tipo {
+    border-color: #9cce72 !important;
+    color: #9cce72 !important;
+}
+
+.swal-senha-title {
+    color: #ffffff !important;
+}
+
+.swal-senha-text {
+    color: #a6a9b8 !important;
+}
+
+.swal-senha-confirmar {
+    background: #9cce72 !important;
+    color: #171923 !important;
+}
+
+.swal-senha-cancelar {
+    background: #393e50 !important;
+    color: #ffffff !important;
+}
+
+.swal2-container {
+    backdrop-filter: blur(5px);
+}
+
 .container {
     width: 100%;
     max-width: 600px;

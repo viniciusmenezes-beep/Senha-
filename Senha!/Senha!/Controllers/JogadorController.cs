@@ -126,6 +126,7 @@ namespace Senha.Controllers
         }
 
         // RANKING GERAL
+
         [HttpGet("ranking")]
         public async Task<IActionResult> Ranking()
         {
@@ -134,13 +135,18 @@ namespace Senha.Controllers
                 {
                     j.IdJogador,
                     j.Nome,
+
                     TotalPartidas = j.Partidas.Count(),
+
                     Vitorias = j.Partidas.Count(p => p.Venceu),
+
                     Derrotas = j.Partidas.Count(p => !p.Venceu),
 
+                    // Considera somente partidas vencidas
                     MelhorPartida = j.Partidas
-                        .OrderBy(p => p.TempoSegundos)
-                        .ThenBy(p => p.Tentativas)
+                        .Where(p => p.Venceu)
+                        .OrderBy(p => p.Tentativas)
+                        .ThenBy(p => p.TempoSegundos)
                         .Select(p => new
                         {
                             p.TempoSegundos,
@@ -149,12 +155,19 @@ namespace Senha.Controllers
                         })
                         .FirstOrDefault()
                 })
-                .Where(j => j.TotalPartidas > 0)
-                .OrderBy(j => j.MelhorPartida!.TempoSegundos)
-                .ThenBy(j => j.MelhorPartida!.Tentativas)
+
+                // Quem nunca venceu não aparece no ranking
+                .Where(j => j.MelhorPartida != null)
+
+                // Primeiro: menos tentativas
+                // Segundo: menor tempo
+                .OrderBy(j => j.MelhorPartida!.Tentativas)
+                .ThenBy(j => j.MelhorPartida!.TempoSegundos)
+
                 .ToListAsync();
 
             return Ok(ranking);
         }
+
     }
 }

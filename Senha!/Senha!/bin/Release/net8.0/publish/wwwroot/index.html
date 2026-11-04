@@ -38,12 +38,10 @@
                 Escolha seu nome de jogador para começar.
             </p>
 
-            <input
-                type="text"
-                id="nome-player"
-                placeholder="Digite seu nome..."
-                maxlength="20"
-            >
+            <input type="text"
+                   id="nome-player"
+                   placeholder="Digite seu nome..."
+                   maxlength="20">
 
             <button id="btn-entrar" class="btn-principal">
                 COMEÇAR A JOGAR
@@ -121,14 +119,12 @@
 
             <div class="area-tentativa">
 
-                <input
-                    type="text"
-                    id="input-senha"
-                    placeholder="Digite 5 números"
-                    maxlength="5"
-                    inputmode="numeric"
-                    autocomplete="off"
-                >
+                <input type="text"
+                       id="input-senha"
+                       placeholder="Digite 5 números"
+                       maxlength="5"
+                       inputmode="numeric"
+                       autocomplete="off">
 
                 <button id="btn-enviar" class="btn-principal">
                     CONFIRMAR
@@ -174,6 +170,32 @@
 
     </main>
 
+    <div id="modal-alerta" class="escondido">
+
+        <div class="modal-conteudo">
+
+            <div id="modal-icone"></div>
+
+            <h2 id="modal-titulo"></h2>
+
+            <p id="modal-mensagem"></p>
+
+            <div class="modal-botoes">
+
+                <button id="modal-cancelar">
+                    CANCELAR
+                </button>
+
+                <button id="modal-confirmar">
+                    ENTENDI
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="Senha!.js"></script>
 
 </body>
