@@ -511,6 +511,31 @@ footer {
     border: 1px solid #9cce72;
 }
 
+
+/* ROLAGEM DO RANKING */
+
+#lista-ranking {
+    height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 5px 8px 5px 0;
+}
+
+/* Barra de rolagem */
+#lista-ranking::-webkit-scrollbar {
+    width: 7px;
+}
+
+#lista-ranking::-webkit-scrollbar-track {
+    background: #222532;
+    border-radius: 10px;
+}
+
+#lista-ranking::-webkit-scrollbar-thumb {
+    background: #9cce72;
+    border-radius: 10px;
+}
+
 /* RESPONSIVIDADE */
 
 @media (max-width: 500px) {
@@ -577,4 +602,87 @@ footer {
         gap: 10px;
     }
 
+}
+/* MOBILE - LAYOUT SEM CARD */
+@media (max-width: 500px) {
+
+    body {
+        display: block;
+        padding: 12px;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+        background: transparent;
+        border: none;
+        box-shadow: none;
+
+        padding: 20px 8px;
+        border-radius: 0;
+    }
+
+    /* Cabeçalho */
+    .cabecalho {
+        margin-bottom: 25px;
+    }
+
+    /* Remove fundos dos painéis */
+    .info-jogador,
+    .area-ranking {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .info-jogador {
+        margin-bottom: 25px;
+    }
+
+    /* Campos */
+    input {
+        background: #222532;
+    }
+
+    /* Ranking */
+    #lista-ranking {
+        height: 300px;
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 5px 8px 5px 0;
+    }
+
+    .ranking-item {
+        background: #222532;
+    }
+
+    /* Histórico */
+    .celula {
+        width: 43px;
+        height: 43px;
+    }
+
+    .legenda {
+        gap: 10px;
+    }
+
+    /* Títulos */
+    .cabecalho h1 {
+        font-size: 25px;
+    }
+
+    /* Logo */
+    .marca img {
+        width: 55px;
+        height: 45px;
+    }
+
+    .marca h1 {
+        font-size: 23px;
+    }
 }
