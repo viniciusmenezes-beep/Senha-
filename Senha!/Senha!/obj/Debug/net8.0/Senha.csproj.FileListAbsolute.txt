@@ -145,3 +145,4 @@ C:\Users\manha.ceticc\Documents\GitHub\Senha-\Senha!\Senha!\obj\Debug\net8.0\ref
 C:\Users\manha.ceticc\Documents\GitHub\Senha-\Senha!\Senha!\obj\Debug\net8.0\Senha.pdb
 C:\Users\manha.ceticc\Documents\GitHub\Senha-\Senha!\Senha!\obj\Debug\net8.0\Senha.genruntimeconfig.cache
 C:\Users\manha.ceticc\Documents\GitHub\Senha-\Senha!\Senha!\obj\Debug\net8.0\ref\Senha.dll
+C:\Users\manha.ceticc\Documents\GitHub\Senha-\Senha!\Senha!\bin\Debug\net8.0\Senha.staticwebassets.runtime.json
