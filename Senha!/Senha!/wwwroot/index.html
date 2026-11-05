@@ -18,40 +18,61 @@
 
     <main class="container">
 
-        <header class="cabecalho">
-            <div class="marca">
-                <img src="img/Logótipo de chave minimalista colorido.png" alt="Logo Senha Secreta">
-                <h1>SENHA!</h1>
-            </div>
+       <!-- LOGIN -->
+<section id="tela-login" class="tela">
 
-            <p>Descubra o código antes que suas tentativas acabem!</p>
-        </header>
+    <!-- MENU SUPERIOR -->
+    <nav class="menu-login">
 
-        <!-- LOGIN -->
-        <section id="tela-login" class="tela">
+        <div class="marca">
+            <img src="img/Logótipo de chave minimalista colorido.png"
+                 alt="Logo Senha Secreta">
+            <h1>SENHA!</h1>
+        </div>
 
-            <div class="icone-login"></div>
+        <div class="botoes-modos">
 
-            <h2>Bem-vindo ao jogo!</h2>
-
-            <p class="descricao">
-                Escolha seu nome de jogador para começar.
-            </p>
-
-            <input type="text"
-                   id="nome-player"
-                   placeholder="Digite seu nome..."
-                   maxlength="20">
-
-            <button id="btn-entrar" class="btn-principal">
-                COMEÇAR A JOGAR
+            <button id="btn-modo-classico" title="Modo clássico">
+                <i data-lucide="gamepad-2"></i>
             </button>
 
-            <button id="btn-ranking" class="btn-secundario">
-                🏆 VER RANKING
-            </button>
+         <button id="btn-modo-criacao" title="Modo criação">
+    <i data-lucide="pencil-ruler"></i>
+</button>
 
-        </section>
+        </div>
+
+    </nav>
+
+    <!-- CONTEÚDO CENTRAL -->
+    <div class="conteudo-login">
+
+        <div class="icone-login"></div>
+
+        <h2>Bem-vindo ao jogo!</h2>
+
+        <p class="descricao">
+            Escolha seu nome de jogador para começar.
+        </p>
+
+        <input
+            type="text"
+            id="nome-player"
+            placeholder="Digite seu nome..."
+            maxlength="20"
+        >
+
+        <button id="btn-entrar" class="btn-principal">
+            COMEÇAR A JOGAR
+        </button>
+
+        <button id="btn-ranking" class="btn-secundario">
+            🏆 VER RANKING
+        </button>
+
+    </div>
+
+</section>
 
         <!-- RANKING -->
         <section id="area-ranking" class="area-ranking escondido">
@@ -71,6 +92,8 @@
 
         <!-- JOGO -->
         <section id="tela-jogo" class="tela escondido">
+
+            <p>Descubra o código antes que suas tentativas acabem!</p>
 
             <div class="info-jogador">
 
@@ -119,12 +142,14 @@
 
             <div class="area-tentativa">
 
-                <input type="text"
-                       id="input-senha"
-                       placeholder="Digite 5 números"
-                       maxlength="5"
-                       inputmode="numeric"
-                       autocomplete="off">
+                <input
+                    type="text"
+                    id="input-senha"
+                    placeholder="Digite 5 números"
+                    maxlength="5"
+                    inputmode="numeric"
+                    autocomplete="off"
+                >
 
                 <button id="btn-enviar" class="btn-principal">
                     CONFIRMAR
@@ -164,12 +189,22 @@
 
         </section>
 
-        <footer>
-            SENHA!© 2026
-        </footer>
-
     </main>
 
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+
+        <p>© 2026 SENHA! — Todos os direitos reservados.</p>
+
+        <div class="rodape-links">
+            <a href="termos.html">Termos de Uso</a>
+            <span>•</span>
+            <a href="privacidade.html">Política de Privacidade</a>
+        </div>
+
+    </footer>
+
+    <!-- MODAL -->
     <div id="modal-alerta" class="escondido">
 
         <div class="modal-conteudo">
@@ -195,7 +230,15 @@
         </div>
 
     </div>
+
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
     <script src="Senha!.js"></script>
 
 </body>

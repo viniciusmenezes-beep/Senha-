@@ -871,3 +871,5 @@ document.getElementById("btn-sair")
 // ============================================
 
 atualizarRanking();
+
+

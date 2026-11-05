@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Senha!"
+    "\\Senha!",
+    "\\Senha!\\Senha!"
   ],
-  "SelectedNode": "\\Senha!\\Senha!.sln",
+  "SelectedNode": "\\Senha!\\Senha!\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

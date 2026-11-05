@@ -34,8 +34,7 @@
               "RelativeToolTip": "Senha!\\wwwroot\\Senha!.css",
               "ViewState": "AgIAABECAAAAAAAAAAAuwBwCAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-11-04T22:08:54.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-04T22:08:54.269Z"
             },
             {
               "$type": "Document",
@@ -47,8 +46,7 @@
               "RelativeToolTip": "Senha!\\wwwroot\\Senha!.js",
               "ViewState": "AgIAAJsBAAAAAAAAAAAQwKwBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-11-04T21:50:14.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-04T21:50:14.617Z"
             },
             {
               "$type": "Document",
@@ -56,9 +54,9 @@
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\appsettings.json",
               "RelativeDocumentMoniker": "Senha!\\appsettings.json",
-              "ToolTip": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\appsettings.json",
-              "RelativeToolTip": "Senha!\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
+              "ToolTip": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\appsettings.json*",
+              "RelativeToolTip": "Senha!\\appsettings.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-04T21:38:36.674Z",
               "EditorCaption": ""

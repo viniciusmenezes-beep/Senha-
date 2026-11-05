@@ -102,7 +102,75 @@ body {
 /* LOGIN */
 
 #tela-login {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-login {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 35px;
+}
+
+.menu-login .marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-login .marca img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.botoes-modos {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.botoes-modos button {
+    position: static;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    color: #9cce72;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botoes-modos button svg {
+    width: 23px;
+    height: 23px;
+}
+
+.conteudo-login {
+    width: 100%;
     text-align: center;
+}
+
+@media (max-width: 480px) {
+    .menu-login .marca img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .menu-login .marca h1 {
+        font-size: 24px;
+    }
+
+    .botoes-modos {
+        gap: 8px;
+    }
 }
 
 .icone-login {
@@ -684,5 +752,239 @@ footer {
 
     .marca h1 {
         font-size: 23px;
+    }
+}
+
+/* RODAPÉ EXTERNO */
+
+body {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+}
+
+.container {
+    flex-shrink: 0;
+}
+
+.rodape {
+    
+    position: relative;
+    margin-top: 0;
+    transform: translateY(200px);
+
+    width: 100%;
+    text-align: center;
+
+   
+    padding: 20px 15px;
+
+    color: #777e91;
+    font-size: 12px;
+}
+
+.rodape-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+.rodape-links a {
+    color: #9cce72;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.rodape-links a:hover {
+    color: #b8e995;
+    text-decoration: underline;
+}
+
+.rodape-links span {
+    color: #555b6e;
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+    .rodape {
+        margin-top: 15px;
+        padding: 20px 10px;
+        font-size: 11px;
+    }
+
+    .rodape-links {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+/* MENU SUPERIOR DO LOGIN */
+
+#tela-login {
+    width: 100%;
+}
+
+.menu-login {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.menu-login .marca {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0;
+}
+
+.menu-login .marca img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.menu-login .marca h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.botoes-modos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    position: static;
+    flex-shrink: 0;
+}
+
+.botoes-modos button {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    width: auto;
+    color: #9cce72;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.botoes-modos button svg {
+    width: 23px;
+    height: 23px;
+}
+
+.conteudo-login {
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    .menu-login {
+        margin-bottom: 28px;
+    }
+
+    .menu-login .marca img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .menu-login .marca h1 {
+        font-size: 23px;
+    }
+
+    .botoes-modos {
+        gap: 8px;
+    }
+}
+
+
+
+
+
+.menu-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.menu-login .marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-login .marca img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.menu-login .marca h1 {
+    margin: 0;
+}
+
+.botoes-modos {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.botoes-modos button {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    color: #9cce72;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.botoes-modos button svg {
+    width: 23px;
+    height: 23px;
+}
+
+.botoes-modos button:hover {
+    color: white;
+    transform: scale(1.12);
+}
+
+.conteudo-login {
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .menu-login {
+        margin-bottom: 28px;
+    }
+
+    .menu-login .marca img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .menu-login .marca h1 {
+        font-size: 24px;
+    }
+
+    .botoes-modos {
+        gap: 10px;
     }
 }
