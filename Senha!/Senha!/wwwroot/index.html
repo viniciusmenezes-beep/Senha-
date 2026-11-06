@@ -11,7 +11,8 @@
     <title>Senha!</title>
 
     <link rel="icon" href="img/Logótipo de chave minimalista colorido.png" type="image/png">
-    <link rel="stylesheet" href="Senha!.css">
+ <link rel="stylesheet" href="/Senha!.css">
+<link rel="stylesheet" href="/TemaClaro!.css" id="css-tema" disabled>
 </head>
 
 <body>
@@ -32,12 +33,15 @@
 
         <div class="botoes-modos">
 
-            <button id="btn-modo-classico" title="Modo clássico">
+          <!--  <button id="btn-modo-classico" title="Modo clássico">
                 <i data-lucide="gamepad-2"></i>
             </button>
 
          <button id="btn-modo-criacao" title="Modo criação">
     <i data-lucide="pencil-ruler"></i>
+</button>-->
+        <button id="btn-tema" title="Alternar tema">
+    <i data-lucide="sun"></i>
 </button>
 
         </div>
@@ -66,10 +70,10 @@
             COMEÇAR A JOGAR
         </button>
 
-        <button id="btn-ranking" class="btn-secundario">
-            🏆 VER RANKING
-        </button>
-
+      <button id="btn-ranking" class="btn-secundario">
+    <i data-lucide="trophy"></i>
+    VER RANKING
+</button>
     </div>
 
 </section>
@@ -78,7 +82,10 @@
         <section id="area-ranking" class="area-ranking escondido">
 
             <div class="titulo-ranking">
-                <h2>🏆 Ranking</h2>
+                <h2>
+    <i data-lucide="trophy"></i>
+    Ranking
+</h2>
                 <span>Melhores jogadores</span>
             </div>
 
@@ -93,9 +100,19 @@
         <!-- JOGO -->
         <section id="tela-jogo" class="tela escondido">
 
-            <p>Descubra o código antes que suas tentativas acabem!</p>
+          <div class="instrucoes">
+
+    <div class="marca marca-jogo">
+        <img src="img/Logótipo de chave minimalista colorido.png"
+             alt="Logo Senha Secreta">
+        <h1>SENHA!</h1>
+    </div>
+
+</div>
 
             <div class="info-jogador">
+
+                
 
                 <div>
                     <span class="texto-pequeno">JOGADOR</span>
@@ -115,7 +132,7 @@
             </div>
 
             <div class="instrucoes">
-                <h2>Descubra a senha</h2>
+                <h2>Descubra a senha </h2>
                 <p>O código possui 5 números.</p>
             </div>
 
@@ -140,22 +157,42 @@
 
             </div>
 
-            <div class="area-tentativa">
+          <div class="area-tentativa">
 
-                <input
-                    type="text"
-                    id="input-senha"
-                    placeholder="Digite 5 números"
-                    maxlength="5"
-                    inputmode="numeric"
-                    autocomplete="off"
-                >
+    <div class="entrada-senha" id="entrada-senha">
+        <div class="celula-entrada"></div>
+        <div class="celula-entrada"></div>
+        <div class="celula-entrada"></div>
+        <div class="celula-entrada"></div>
+        <div class="celula-entrada"></div>
+    </div>
 
-                <button id="btn-enviar" class="btn-principal">
-                    CONFIRMAR
-                </button>
+    <button id="btn-enviar" class="btn-principal">
+        <span class="texto-confirmar">CONFIRMAR</span>
+        <span class="icone-enviar">➤</span>
+    </button>
 
-            </div>
+    <div class="teclado-virtual" id="teclado-virtual">
+
+        <button type="button" data-numero="1">1</button>
+        <button type="button" data-numero="2">2</button>
+        <button type="button" data-numero="3">3</button>
+
+        <button type="button" data-numero="4">4</button>
+        <button type="button" data-numero="5">5</button>
+        <button type="button" data-numero="6">6</button>
+
+        <button type="button" data-numero="7">7</button>
+        <button type="button" data-numero="8">8</button>
+        <button type="button" data-numero="9">9</button>
+
+        <button type="button" data-acao="apagar">⌫</button>
+        <button type="button" data-numero="0">0</button>
+        <button type="button" data-acao="enviar">➤</button>
+
+    </div>
+
+</div>
 
             <p id="mensagem" class="mensagem"></p>
 
@@ -192,17 +229,19 @@
     </main>
 
     <!-- RODAPÉ -->
-    <footer class="rodape">
+  <footer class="rodape">
 
-        <p>© 2026 SENHA! — Todos os direitos reservados.</p>
+    <p>© 2026 SENHA! — Todos os direitos reservados.</p>
 
-        <div class="rodape-links">
-            <a href="termos.html">Termos de Uso</a>
-            <span>•</span>
-            <a href="privacidade.html">Política de Privacidade</a>
-        </div>
+    <div class="rodape-links">
+        <a href="termos.html">Termos de Uso</a>
+        <span>•</span>
+        <a href="privacidade.html">Política de Privacidade</a>
+        <span>•</span>
+        <a href="comojogar.html" id="btn-como-jogar">Como jogar?</a>
+    </div>
 
-    </footer>
+</footer>
 
     <!-- MODAL -->
     <div id="modal-alerta" class="escondido">
@@ -240,6 +279,7 @@
     </script>
 
     <script src="Senha!.js"></script>
+     <script src="tema.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,9 @@
 wwwroot\img\Logótipo de chave minimalista colorido.png
+wwwroot\privacidade.html
 wwwroot\index.html
+wwwroot\comojogar.html
 wwwroot\Senha!.css
 wwwroot\Senha!.js
+wwwroot\tema.js
+wwwroot\TemaClaro!.css
+wwwroot\Termos.html

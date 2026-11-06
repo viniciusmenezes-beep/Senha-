@@ -17,10 +17,59 @@ let tempoInicio = 0;
 let intervaloCronometro = null;
 let tempoFinal = 0;
 
+let palpiteAtual = "";
+let resolverModal = null;
 
+
+// ============================================
+// ELEMENTOS HTML
+// ============================================
+
+const telaLogin = document.getElementById("tela-login");
+const telaJogo = document.getElementById("tela-jogo");
+const telaResultado = document.getElementById("tela-resultado");
+
+const inputNome = document.getElementById("nome-player");
+const entradaSenha = document.getElementById("entrada-senha");
+
+const celulasEntrada = entradaSenha
+    ? entradaSenha.querySelectorAll(".celula-entrada")
+    : [];
+
+const tecladoVirtual = document.getElementById("teclado-virtual");
+
+const historico = document.getElementById("historico");
+const contador = document.getElementById("contador");
+const mensagem = document.getElementById("mensagem");
+const cronometro = document.getElementById("cronometro");
+
+const areaRanking = document.getElementById("area-ranking");
+const btnRanking = document.getElementById("btn-ranking");
+const btnFecharRanking = document.getElementById("btn-fechar-ranking");
+const listaRanking = document.getElementById("lista-ranking");
+
+const btnEntrar = document.getElementById("btn-entrar");
+const btnEnviar = document.getElementById("btn-enviar");
+const btnReiniciar = document.getElementById("btn-reiniciar");
+const btnVoltar = document.getElementById("btn-voltar");
+const btnSair = document.getElementById("btn-sair");
+
+
+// ============================================
+// MODAL PERSONALIZADO
+// ============================================
+
+const modalAlerta = document.getElementById("modal-alerta");
+const modalIcone = document.getElementById("modal-icone");
+const modalTitulo = document.getElementById("modal-titulo");
+const modalMensagem = document.getElementById("modal-mensagem");
+
+const modalConfirmar = document.getElementById("modal-confirmar");
+const modalCancelar = document.getElementById("modal-cancelar");
 
 
 function alerta(titulo, mensagem, tipo = "warning") {
+
     return Swal.fire({
         title: titulo,
         text: mensagem,
@@ -39,51 +88,29 @@ function alerta(titulo, mensagem, tipo = "warning") {
 
         buttonsStyling: false,
         confirmButtonText: "ENTENDI",
-
         allowOutsideClick: false
     });
 }
-// ============================================
-// ELEMENTOS HTML
-// ============================================
-
-const telaLogin = document.getElementById("tela-login");
-const telaJogo = document.getElementById("tela-jogo");
-const telaResultado = document.getElementById("tela-resultado");
-
-const inputNome = document.getElementById("nome-player");
-const inputSenha = document.getElementById("input-senha");
-
-const historico = document.getElementById("historico");
-const contador = document.getElementById("contador");
-const mensagem = document.getElementById("mensagem");
-
-const cronometro = document.getElementById("cronometro");
-
-const areaRanking = document.getElementById("area-ranking");
-const btnRanking = document.getElementById("btn-ranking");
-const btnFecharRanking = document.getElementById("btn-fechar-ranking");
-
-const listaRanking = document.getElementById("lista-ranking");
-
-
-
-// =================================
-// MODAL PERSONALIZADO
-// =================================
-
-const modalAlerta = document.getElementById("modal-alerta");
-const modalIcone = document.getElementById("modal-icone");
-const modalTitulo = document.getElementById("modal-titulo");
-const modalMensagem = document.getElementById("modal-mensagem");
-
-const modalConfirmar = document.getElementById("modal-confirmar");
-const modalCancelar = document.getElementById("modal-cancelar");
-
-let resolverModal = null;
 
 
 function abrirModal(titulo, mensagem, tipo = "erro", confirmacao = false) {
+
+    // Caso o HTML do modal não exista, utiliza o SweetAlert
+    if (!modalAlerta || !modalTitulo || !modalMensagem || !modalIcone || !modalConfirmar) {
+
+        if (confirmacao) {
+            return Swal.fire({
+                title: titulo,
+                text: mensagem,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "SIM, SAIR",
+                cancelButtonText: "CANCELAR"
+            }).then(resultado => resultado.isConfirmed);
+        }
+
+        return alerta(titulo, mensagem, tipo);
+    }
 
     return new Promise((resolve) => {
 
@@ -98,12 +125,13 @@ function abrirModal(titulo, mensagem, tipo = "erro", confirmacao = false) {
 
         modalTitulo.textContent = titulo;
         modalMensagem.textContent = mensagem;
-
         modalIcone.textContent = icones[tipo] || "!";
 
         modalIcone.className = `modal-icone ${tipo}`;
 
-        modalCancelar.classList.toggle("escondido", !confirmacao);
+        if (modalCancelar) {
+            modalCancelar.classList.toggle("escondido", !confirmacao);
+        }
 
         modalConfirmar.textContent = confirmacao
             ? "SIM, SAIR"
@@ -116,7 +144,9 @@ function abrirModal(titulo, mensagem, tipo = "erro", confirmacao = false) {
 
 function fecharModal(resultado) {
 
-    modalAlerta.classList.add("escondido");
+    if (modalAlerta) {
+        modalAlerta.classList.add("escondido");
+    }
 
     if (resolverModal) {
         resolverModal(resultado);
@@ -125,28 +155,27 @@ function fecharModal(resultado) {
 }
 
 
-// Mostrar aviso simples
 function mostrarAlerta(mensagem, tipo = "erro", titulo = "Atenção!") {
 
     return abrirModal(titulo, mensagem, tipo, false);
 }
 
 
-// Mostrar confirmação com SIM e CANCELAR
 function mostrarConfirmacao(mensagem, titulo = "Tem certeza?") {
 
     return abrirModal(titulo, mensagem, "confirmacao", true);
 }
 
 
-// Botões do modal
-modalConfirmar.addEventListener("click", () => {
+modalConfirmar?.addEventListener("click", () => {
     fecharModal(true);
 });
 
-modalCancelar.addEventListener("click", () => {
+modalCancelar?.addEventListener("click", () => {
     fecharModal(false);
 });
+
+
 // ============================================
 // FORMATAR TEMPO
 // ============================================
@@ -189,7 +218,9 @@ function atualizarCronometro() {
         (Date.now() - tempoInicio) / 1000
     );
 
-    cronometro.textContent = formatarTempo(tempoAtual);
+    if (cronometro) {
+        cronometro.textContent = formatarTempo(tempoAtual);
+    }
 }
 
 
@@ -203,7 +234,9 @@ function pararCronometro() {
         (Date.now() - tempoInicio) / 1000
     );
 
-    cronometro.textContent = formatarTempo(tempoFinal);
+    if (cronometro) {
+        cronometro.textContent = formatarTempo(tempoFinal);
+    }
 }
 
 
@@ -213,11 +246,11 @@ function pararCronometro() {
 
 function mostrarTela(tela) {
 
-    telaLogin.classList.add("escondido");
-    telaJogo.classList.add("escondido");
-    telaResultado.classList.add("escondido");
+    telaLogin?.classList.add("escondido");
+    telaJogo?.classList.add("escondido");
+    telaResultado?.classList.add("escondido");
 
-    tela.classList.remove("escondido");
+    tela?.classList.remove("escondido");
 }
 
 
@@ -227,35 +260,35 @@ function mostrarTela(tela) {
 
 async function entrarNoJogo() {
 
-    nomeJogador = inputNome.value.trim();
+    nomeJogador = inputNome?.value.trim() || "";
+
+    if (!nomeJogador) {
+
+        alerta(
+            "Digite seu nome!",
+            "Você precisa informar seu nome para continuar.",
+            "warning"
+        );
+
+        inputNome?.focus();
+        return;
+    }
 
     if (nomeJogador.length > 20) {
+
         alerta(
             "Nome muito grande!",
             "O nome deve ter no máximo 20 caracteres.",
             "warning"
         );
 
-        inputNome.focus();
+        inputNome?.focus();
         return;
     }
 
-    if (nomeJogador.length > 20) {
-
-        alerta(
-            "Muito bem!",
-            "Sua partida foi salva com sucesso!",
-            "success"
-        );
-
-        inputNome.focus();
-
-        return;
+    if (btnEntrar) {
+        btnEntrar.disabled = true;
     }
-
-    const btnEntrar = document.getElementById("btn-entrar");
-
-    btnEntrar.disabled = true;
 
     try {
 
@@ -292,21 +325,20 @@ async function entrarNoJogo() {
                 }
             );
 
-           if (!cadastro.ok) {
+            if (!cadastro.ok) {
 
-    const erro = await cadastro.text();
+                const erro = await cadastro.text();
 
-    console.error("Erro detalhado do cadastro:", erro);
+                console.error("Erro detalhado do cadastro:", erro);
 
-               alerta(
-                   "Digite seu nome para continuar.",
-                   
-               );
+                alerta(
+                    "Erro no cadastro!",
+                    "Não foi possível cadastrar o jogador.",
+                    "error"
+                );
 
-               return;
-
-              
-}
+                return;
+            }
 
             const resultado = await cadastro.json();
 
@@ -317,8 +349,11 @@ async function entrarNoJogo() {
             idJogador = jogador.idJogador;
         }
 
-        document.getElementById("nome-exibido").textContent =
-            nomeJogador;
+        const nomeExibido = document.getElementById("nome-exibido");
+
+        if (nomeExibido) {
+            nomeExibido.textContent = nomeJogador;
+        }
 
         iniciarPartida();
 
@@ -327,7 +362,6 @@ async function entrarNoJogo() {
         console.error("Erro ao entrar:", erro);
 
         alerta(
-          
             "Ops!",
             "Não foi possível conectar com o servidor.",
             "error"
@@ -335,18 +369,19 @@ async function entrarNoJogo() {
 
     } finally {
 
-        btnEntrar.disabled = false;
+        if (btnEntrar) {
+            btnEntrar.disabled = false;
+        }
     }
 }
 
 
 // Botão de entrar
-document.getElementById("btn-entrar")
-    .addEventListener("click", entrarNoJogo);
+btnEntrar?.addEventListener("click", entrarNoJogo);
 
 
 // Permite entrar pressionando Enter
-inputNome.addEventListener("keydown", (e) => {
+inputNome?.addEventListener("keydown", (e) => {
 
     if (e.key === "Enter") {
         entrarNoJogo();
@@ -380,22 +415,27 @@ function iniciarPartida() {
     senhaSecreta = gerarSenha();
 
     tentativas = 0;
+    palpiteAtual = "";
 
-    historico.innerHTML = "";
+    if (historico) {
+        historico.innerHTML = "";
+    }
 
-    inputSenha.value = "";
+    atualizarEntradaSenha();
 
-    contador.textContent = `0 / ${MAX_TENTATIVAS}`;
+    if (contador) {
+        contador.textContent = `0 / ${MAX_TENTATIVAS}`;
+    }
 
-    mensagem.textContent = "";
+    if (mensagem) {
+        mensagem.textContent = "";
+    }
 
-    areaRanking.classList.add("escondido");
+    areaRanking?.classList.add("escondido");
 
     mostrarTela(telaJogo);
 
     iniciarCronometro();
-
-    inputSenha.focus();
 }
 
 
@@ -409,8 +449,7 @@ function compararSenha(palpite) {
 
     const restante = {};
 
-    // PRIMEIRO: VERIFICAR POSIÇÕES CORRETAS
-
+    // Primeiro: verificar posições corretas
     for (let i = 0; i < TAMANHO_SENHA; i++) {
 
         if (palpite[i] === senhaSecreta[i]) {
@@ -424,8 +463,7 @@ function compararSenha(palpite) {
         }
     }
 
-    // SEGUNDO: VERIFICAR NÚMEROS NA POSIÇÃO ERRADA
-
+    // Segundo: verificar números na posição errada
     for (let i = 0; i < TAMANHO_SENHA; i++) {
 
         if (resultado[i] === "verde") {
@@ -447,32 +485,61 @@ function compararSenha(palpite) {
 
 
 // ============================================
+// ENTRADA DIRETA NOS QUADRADOS
+// ============================================
+
+function atualizarEntradaSenha() {
+
+    celulasEntrada.forEach((celula, indice) => {
+
+        celula.textContent = palpiteAtual[indice] || "";
+
+        celula.classList.toggle(
+            "preenchida",
+            indice < palpiteAtual.length
+        );
+
+    });
+}
+
+
+function adicionarNumero(numero) {
+
+    if (palpiteAtual.length >= TAMANHO_SENHA) {
+        return;
+    }
+
+    palpiteAtual += numero;
+
+    if (mensagem) {
+        mensagem.textContent = "";
+    }
+
+    atualizarEntradaSenha();
+}
+
+
+function apagarNumero() {
+
+    palpiteAtual = palpiteAtual.slice(0, -1);
+
+    atualizarEntradaSenha();
+}
+
+
+// ============================================
 // ENVIAR TENTATIVA
 // ============================================
 
-document.getElementById("btn-enviar")
-    .addEventListener("click", enviarTentativa);
-
-
-inputSenha.addEventListener("keydown", (e) => {
-
-    if (e.key === "Enter") {
-        enviarTentativa();
-    }
-});
-
-
 function enviarTentativa() {
 
-    const palpite = inputSenha.value.trim();
+    const palpite = palpiteAtual;
 
-    // Verifica se foram digitados exatamente 5 números
     if (!/^\d{5}$/.test(palpite)) {
 
-        mensagem.textContent =
-            "Digite exatamente 5 números!";
-
-        inputSenha.focus();
+        if (mensagem) {
+            mensagem.textContent = "Digite exatamente 5 números!";
+        }
 
         return;
     }
@@ -483,12 +550,15 @@ function enviarTentativa() {
 
     mostrarTentativa(palpite, cores);
 
-    contador.textContent =
-        `${tentativas} / ${MAX_TENTATIVAS}`;
+    if (contador) {
+        contador.textContent = `${tentativas} / ${MAX_TENTATIVAS}`;
+    }
 
-    inputSenha.value = "";
+    palpiteAtual = "";
 
-    // VITÓRIA
+    atualizarEntradaSenha();
+
+    // Vitória
     if (palpite === senhaSecreta) {
 
         finalizarJogo(true);
@@ -496,7 +566,7 @@ function enviarTentativa() {
         return;
     }
 
-    // DERROTA
+    // Derrota
     if (tentativas >= MAX_TENTATIVAS) {
 
         finalizarJogo(false);
@@ -504,11 +574,81 @@ function enviarTentativa() {
         return;
     }
 
-    mensagem.textContent =
-        "Senha incorreta! Tente novamente.";
-
-    inputSenha.focus();
+    if (mensagem) {
+        mensagem.textContent = "Senha incorreta! Tente novamente.";
+    }
 }
+
+
+// Botão confirmar do PC
+btnEnviar?.addEventListener("click", enviarTentativa);
+
+
+// ============================================
+// TECLADO FÍSICO - PC
+// ============================================
+
+document.addEventListener("keydown", (e) => {
+
+    if (!telaJogo || telaJogo.classList.contains("escondido")) {
+        return;
+    }
+
+    // Não captura teclas se um modal estiver aberto
+    if (modalAlerta && !modalAlerta.classList.contains("escondido")) {
+        return;
+    }
+
+    if (e.key >= "0" && e.key <= "9") {
+
+        e.preventDefault();
+
+        adicionarNumero(e.key);
+    }
+
+    if (e.key === "Backspace") {
+
+        e.preventDefault();
+
+        apagarNumero();
+    }
+
+    if (e.key === "Enter") {
+
+        e.preventDefault();
+
+        enviarTentativa();
+    }
+});
+
+
+// ============================================
+// TECLADO VIRTUAL - CELULAR
+// ============================================
+
+tecladoVirtual?.addEventListener("click", (e) => {
+
+    const botao = e.target.closest("button");
+
+    if (!botao) {
+        return;
+    }
+
+    if (botao.dataset.numero !== undefined) {
+
+        adicionarNumero(botao.dataset.numero);
+    }
+
+    if (botao.dataset.acao === "apagar") {
+
+        apagarNumero();
+    }
+
+    if (botao.dataset.acao === "enviar") {
+
+        enviarTentativa();
+    }
+});
 
 
 // ============================================
@@ -516,6 +656,10 @@ function enviarTentativa() {
 // ============================================
 
 function mostrarTentativa(palpite, cores) {
+
+    if (!historico) {
+        return;
+    }
 
     const linha = document.createElement("div");
 
@@ -605,6 +749,10 @@ async function registrarResultado(venceu) {
 
 async function atualizarRanking() {
 
+    if (!listaRanking) {
+        return;
+    }
+
     listaRanking.innerHTML = `
         <p class="ranking-vazio">
             Carregando ranking...
@@ -613,9 +761,7 @@ async function atualizarRanking() {
 
     try {
 
-        const resposta = await fetch(
-            `${API_URL}/Jogador/ranking`
-        );
+        const resposta = await fetch(`${API_URL}/Jogador/ranking`);
 
         if (!resposta.ok) {
 
@@ -716,11 +862,11 @@ async function atualizarRanking() {
 // ABRIR RANKING
 // ============================================
 
-btnRanking.addEventListener("click", async () => {
+btnRanking?.addEventListener("click", async () => {
 
-    telaLogin.classList.add("escondido");
+    telaLogin?.classList.add("escondido");
 
-    areaRanking.classList.remove("escondido");
+    areaRanking?.classList.remove("escondido");
 
     await atualizarRanking();
 });
@@ -730,11 +876,11 @@ btnRanking.addEventListener("click", async () => {
 // FECHAR RANKING
 // ============================================
 
-btnFecharRanking.addEventListener("click", () => {
+btnFecharRanking?.addEventListener("click", () => {
 
-    areaRanking.classList.add("escondido");
+    areaRanking?.classList.add("escondido");
 
-    telaLogin.classList.remove("escondido");
+    telaLogin?.classList.remove("escondido");
 });
 
 
@@ -746,76 +892,79 @@ async function finalizarJogo(venceu) {
 
     pararCronometro();
 
-    // Salva a partida no banco antes de mostrar o resultado
+    // Salva a partida antes de mostrar o resultado
     await registrarResultado(venceu);
 
     mostrarTela(telaResultado);
 
-    areaRanking.classList.remove("escondido");
+    areaRanking?.classList.remove("escondido");
+
+    const iconeResultado = document.getElementById("icone-resultado");
 
     if (venceu) {
 
-        document.getElementById("icone-resultado")
-            .textContent = "🏆";
+        iconeResultado.innerHTML = `
+            <i data-lucide="trophy"></i>
+        `;
 
-        document.getElementById("titulo-resultado")
-            .textContent = `Parabéns, ${nomeJogador}!`;
+        document.getElementById("titulo-resultado").textContent =
+            `Parabéns, ${nomeJogador}!`;
 
-        document.getElementById("texto-resultado")
-            .textContent =
+        document.getElementById("texto-resultado").textContent =
             `Você descobriu a senha em ${tentativas} tentativa(s), levando ${formatarTempo(tempoFinal)}!`;
 
     } else {
 
-        document.getElementById("icone-resultado")
-            .textContent = "😢";
+        iconeResultado.innerHTML = `
+            <i data-lucide="frown"></i>
+        `;
 
-        document.getElementById("titulo-resultado")
-            .textContent = "Fim de jogo!";
+        document.getElementById("titulo-resultado").textContent =
+            "Fim de jogo!";
 
-        document.getElementById("texto-resultado")
-            .textContent =
+        document.getElementById("texto-resultado").textContent =
             `Suas tentativas acabaram. Você levou ${formatarTempo(tempoFinal)}. Tente novamente!`;
     }
 
-    document.getElementById("senha-final")
-        .textContent = senhaSecreta;
+    // Renderiza os ícones Lucide
+    lucide.createIcons();
+
+    document.getElementById("senha-final").textContent = senhaSecreta;
 }
+
 
 
 // ============================================
 // REINICIAR PARTIDA
 // ============================================
 
-document.getElementById("btn-reiniciar")
-    .addEventListener("click", () => {
+btnReiniciar?.addEventListener("click", () => {
 
-        iniciarPartida();
-    });
+    iniciarPartida();
+});
 
 
 // ============================================
 // TROCAR JOGADOR
 // ============================================
 
-document.getElementById("btn-voltar")
-    .addEventListener("click", () => {
+btnVoltar?.addEventListener("click", () => {
 
+    if (inputNome) {
         inputNome.value = "";
+    }
 
-        nomeJogador = "";
+    nomeJogador = "";
+    idJogador = null;
+    palpiteAtual = "";
 
-        idJogador = null;
+    pararCronometro();
 
-        areaRanking.classList.remove("escondido");
+    areaRanking?.classList.remove("escondido");
 
-        mostrarTela(telaLogin);
-    });
+    mostrarTela(telaLogin);
+});
 
-
-// ============================================
-// SAIR DO JOGO
-// ============================================
 
 // ============================================
 // SAIR DO JOGO
@@ -854,22 +1003,30 @@ async function confirmarSaida() {
         clearInterval(intervaloCronometro);
         intervaloCronometro = null;
 
-        inputNome.value = "";
+        tempoFinal = 0;
+        palpiteAtual = "";
+
+        atualizarEntradaSenha();
+
+        if (inputNome) {
+            inputNome.value = "";
+        }
+
         nomeJogador = "";
         idJogador = null;
 
-        areaRanking.classList.remove("escondido");
+        areaRanking?.classList.remove("escondido");
+
         mostrarTela(telaLogin);
     }
 }
 
-document.getElementById("btn-sair")
-    .addEventListener("click", confirmarSaida);
+
+btnSair?.addEventListener("click", confirmarSaida);
+
 
 // ============================================
 // CARREGAR RANKING AO ABRIR O JOGO
 // ============================================
 
 atualizarRanking();
-
-

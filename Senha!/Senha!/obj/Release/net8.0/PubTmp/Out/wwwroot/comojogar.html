@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Como Jogar | SENHA!</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="img/Logótipo de chave minimalista colorido.png" type="image/png">
+
+    <link rel="stylesheet" href="/Senha!.css">
+    <link rel="stylesheet" href="/TemaClaro!.css" id="css-tema" disabled>
+
+    <style>
+        body {
+            display: block;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+        .pagina-legal {
+            width: 100%;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 35px;
+            background: #222532;
+            border: 1px solid #383d4e;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px #0005;
+        }
+
+        .pagina-legal h1 {
+            color: #9cce72;
+            margin-bottom: 10px;
+        }
+
+        .pagina-legal h2 {
+            color: #9cce72;
+            font-size: 19px;
+            margin: 28px 0 10px;
+        }
+
+        .pagina-legal p {
+            color: #a6a9b8;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #9cce72;
+            color: #171923;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 9px;
+        }
+
+        .exemplo-cores {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .exemplo-cor {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quadrado-exemplo {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .quadrado-exemplo.verde {
+            background: #849e50;
+        }
+
+        .quadrado-exemplo.vermelho {
+            background: #ec5151;
+        }
+
+        .quadrado-exemplo.cinza {
+            background: #555967;
+        }
+
+        .texto-cor strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .texto-cor p {
+            margin: 0;
+        }
+
+        .exemplo-tentativa {
+            display: flex;
+            gap: 7px;
+            margin: 18px 0;
+        }
+
+        .exemplo-tentativa .quadrado-exemplo {
+            width: 42px;
+            height: 42px;
+        }
+
+        .dica {
+            margin-top: 25px;
+            padding: 18px;
+            background: #303546;
+            border-radius: 10px;
+            border-left: 4px solid #9cce72;
+        }
+
+        .dica strong {
+            color: #9cce72;
+        }
+
+        .dica p {
+            margin: 5px 0 0;
+        }
+
+        .data {
+            color: #777e91 !important;
+            font-size: 12px !important;
+        }
+
+        @media(max-width: 500px) {
+            .pagina-legal {
+                padding: 23px 18px;
+            }
+
+            .exemplo-cor {
+                gap: 12px;
+            }
+
+            .quadrado-exemplo {
+                width: 42px;
+                height: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="pagina-legal">
+
+        <h1>Como jogar?</h1>
+        <p class="data">Aprenda as regras do SENHA!</p>
+
+        <p>
+            O SENHA! é um jogo de raciocínio em que seu objetivo
+            é descobrir uma combinação numérica secreta.
+            Prepare-se para testar sua lógica e usar as pistas
+            disponíveis para encontrar a resposta!
+        </p>
+
+        <h2>1. Objetivo do jogo</h2>
+        <p>
+            Descubra uma senha secreta formada por 5 números
+            diferentes ou repetidos, conforme a combinação
+            gerada pelo jogo.
+        </p>
+        <p>
+            Você terá até 6 tentativas para descobrir a senha
+            correta. A cada tentativa, o jogo apresentará
+            pistas por meio de quadradinhos coloridos.
+        </p>
+
+        <h2>2. Entenda as cores</h2>
+        <p>
+            As cores indicam se os números escolhidos estão
+            presentes na senha e se estão nas posições corretas.
+        </p>
+
+        <div class="exemplo-cores">
+
+            <div class="exemplo-cor">
+                <div class="quadrado-exemplo verde">4</div>
+                <div class="texto-cor">
+                    <strong>Verde — Posição correta</strong>
+                    <p>O número faz parte da senha e está na posição certa.</p>
+                </div>
+            </div>
+
+            <div class="exemplo-cor">
+                <div class="quadrado-exemplo vermelho">7</div>
+                <div class="texto-cor">
+                    <strong>Vermelho — Número na posição errada</strong>
+                    <p>O número existe na senha, mas está em outra posição.</p>
+                </div>
+            </div>
+
+            <div class="exemplo-cor">
+                <div class="quadrado-exemplo cinza">2</div>
+                <div class="texto-cor">
+                    <strong>Cinza — Número incorreto</strong>
+                    <p>O número não faz parte da senha secreta.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>3. Como funciona uma tentativa?</h2>
+        <p>
+            Digite os 5 números que você acredita fazerem parte
+            da senha e confirme sua tentativa.
+            Em seguida, observe as cores apresentadas para
+            entender quais números acertou.
+        </p>
+
+        <div class="exemplo-tentativa">
+            <div class="quadrado-exemplo verde">4</div>
+            <div class="quadrado-exemplo vermelho">7</div>
+            <div class="quadrado-exemplo cinza">2</div>
+            <div class="quadrado-exemplo verde">8</div>
+            <div class="quadrado-exemplo cinza">1</div>
+        </div>
+
+        <p>
+            Cada quadradinho representa a posição do número
+            correspondente na sua tentativa.
+        </p>
+
+        <h2>4. Como vencer?</h2>
+        <p>
+            Você vence quando consegue descobrir todos os
+            5 números da senha e suas respectivas posições
+            dentro do limite de tentativas.
+        </p>
+        <p>
+            Caso suas 6 tentativas acabem sem descobrir
+            a combinação, o jogo será encerrado e a senha
+            correta será revelada.
+        </p>
+
+        <h2>5. Ranking</h2>
+        <p>
+            Seu desempenho pode ser registrado no ranking
+            do SENHA!. Os resultados levam em consideração
+            suas partidas, tentativas e tempo de conclusão,
+            conforme os critérios do jogo.
+        </p>
+
+        <div class="dica">
+            <strong>💡 Dica!</strong>
+            <p>
+                Não tente adivinhar aleatoriamente!
+                Use as cores das tentativas anteriores para
+                eliminar possibilidades e encontrar a senha.
+            </p>
+        </div>
+
+        <a href="index.html" class="voltar">VOLTAR AO JOGO</a>
+
+    </main>
+
+    <script src="tema.js"></script>
+
+</body>
+</html>

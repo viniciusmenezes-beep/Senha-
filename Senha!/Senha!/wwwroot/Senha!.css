@@ -988,3 +988,150 @@ body {
         gap: 10px;
     }
 }
+
+/* ENTRADA DIRETA DA SENHA */
+
+.entrada-senha {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.celula-entrada {
+    width: 48px;
+    height: 48px;
+    background: #171923;
+    border: 2px solid #555b6e;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.celula-entrada.preenchida {
+    border-color: #9cce72;
+}
+
+/* TECLADO VIRTUAL */
+
+.teclado-virtual {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.teclado-virtual button {
+    background: #303546;
+    color: white;
+    border: 1px solid #41475a;
+    min-height: 48px;
+    font-size: 19px;
+    padding: 10px;
+}
+
+.teclado-virtual button:active {
+    transform: scale(.95);
+}
+
+.icone-enviar {
+    display: none;
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .teclado-virtual {
+        display: grid;
+    }
+
+    .entrada-senha {
+        gap: 6px;
+    }
+
+    .celula-entrada {
+        width: 43px;
+        height: 43px;
+        font-size: 19px;
+    }
+
+    #btn-enviar {
+        display: none;
+    }
+
+    .teclado-virtual [data-acao="enviar"] {
+        background: #9cce72;
+        color: #171923;
+    }
+}
+
+
+/* ÍCONES DOS BOTÕES */
+
+#btn-ranking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#btn-ranking svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.titulo-ranking h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.titulo-ranking h2 svg {
+    width: 21px;
+    height: 21px;
+}
+
+#btn-enviar .icone-enviar {
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-enviar .icone-enviar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.teclado-virtual button svg {
+    width: 21px;
+    height: 21px;
+    display: block;
+    margin: auto;
+}
+
+
+
+
+/* ÍCONE DO RESULTADO */
+
+.icone-resultado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+        margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.icone-resultado svg {
+    width: 65px;
+    height: 65px;
+    stroke-width: 1.8;
+}

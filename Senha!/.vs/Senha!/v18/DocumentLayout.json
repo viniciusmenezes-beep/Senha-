@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|e:\\sites\\senai\\senha-\\senha!\\senha!\\wwwroot\\termos.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\wwwroot\\termos.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|e:\\sites\\senai\\senha-\\senha!\\senha!\\wwwroot\\senha!.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{857C6228-82BE-478D-8755-15B52EA64B31}|Senha!\\Senha.csproj|solutionrelative:senha!\\wwwroot\\senha!.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Termos.html",
+              "DocumentMoniker": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\wwwroot\\Termos.html",
+              "RelativeDocumentMoniker": "Senha!\\wwwroot\\Termos.html",
+              "ToolTip": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\wwwroot\\Termos.html",
+              "RelativeToolTip": "Senha!\\wwwroot\\Termos.html",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAuwJIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-11-06T20:15:10.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Senha!.css",
               "DocumentMoniker": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\wwwroot\\Senha!.css",
               "RelativeDocumentMoniker": "Senha!\\wwwroot\\Senha!.css",
@@ -38,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Senha!.js",
               "DocumentMoniker": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\wwwroot\\Senha!.js",
               "RelativeDocumentMoniker": "Senha!\\wwwroot\\Senha!.js",
@@ -56,7 +73,7 @@
               "RelativeDocumentMoniker": "Senha!\\appsettings.json",
               "ToolTip": "E:\\SITES\\senai\\Senha-\\Senha!\\Senha!\\appsettings.json",
               "RelativeToolTip": "Senha!\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-04T21:38:36.674Z",
               "EditorCaption": ""
