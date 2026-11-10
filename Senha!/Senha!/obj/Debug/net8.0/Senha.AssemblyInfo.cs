@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Senha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6864d81c907ff1e5bc7f94184108a1255bcd151")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a84ef76aa9bb04a51a04cc7f450b0018503d5c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Senha")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Senha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

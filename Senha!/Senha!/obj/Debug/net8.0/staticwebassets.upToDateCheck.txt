@@ -1,3 +1,4 @@
+wwwroot\comojogar.html
 wwwroot\img\Logótipo de chave minimalista colorido.png
 wwwroot\index.html
 wwwroot\privacidade.html
